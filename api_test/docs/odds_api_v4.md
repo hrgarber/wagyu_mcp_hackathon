@@ -3,21 +3,16 @@
 ## Overview
 The Odds API provides comprehensive access to sports betting data, including live odds, scores, and event information from multiple bookmakers worldwide. This document serves as a detailed reference for the API's capabilities and integration points.
 
-## Base URL
+## Host
 - Primary: `https://api.the-odds-api.com`
 - IPv6: `https://ipv6-api.the-odds-api.com`
 
 ## Authentication
-- Requires an API key passed as query parameter `apiKey`
-- Usage tracked through response headers:
-  - `x-requests-remaining`: Credits remaining until quota reset
-  - `x-requests-used`: Credits used since last quota reset
-  - `x-requests-last`: Usage cost of last API call
+The Odds API uses API keys for authentication. All requests require an API key passed as a query parameter `apiKey`.
 
 ## Available Endpoints
 
-### 1. Sports List
-**Endpoint:** `GET /v4/sports`
+### 1. Sports List (`GET /v4/sports`)
 **Cost:** Free (doesn't count against quota)
 
 **Capabilities:**
@@ -29,8 +24,7 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - `apiKey`: Required - API authentication key
 - `all`: Optional - Include out-of-season sports if true
 
-### 2. Odds Data
-**Endpoint:** `GET /v4/sports/{sport}/odds`
+### 2. Odds Data (`GET /v4/sports/{sport}/odds`)
 **Cost:** 1 credit per region per market
 
 **Capabilities:**
@@ -64,15 +58,16 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - `oddsFormat`: Optional - 'decimal' or 'american' (default: decimal)
 - `eventIds`: Optional - Filter specific events
 - `bookmakers`: Optional - Filter specific bookmakers
-- `commenceTimeFrom`: Optional - Filter by start time
-- `commenceTimeTo`: Optional - Filter by end time
+- `commenceTimeFrom`: Optional - Filter by start time (ISO 8601)
+- `commenceTimeTo`: Optional - Filter by end time (ISO 8601)
 - `includeLinks`: Optional - Include bookmaker links
 - `includeSids`: Optional - Include source IDs
 - `includeBetLimits`: Optional - Include betting limits
 
-### 3. Scores
-**Endpoint:** `GET /v4/sports/{sport}/scores`
-**Cost:** 1-2 credits depending on parameters
+### 3. Scores (`GET /v4/sports/{sport}/scores`)
+**Cost:** 
+- 1 credit for live and upcoming games
+- 2 credits when including historical data
 
 **Capabilities:**
 - Live scores (30-second updates)
@@ -87,8 +82,7 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - `dateFormat`: Optional - 'unix' or 'iso'
 - `eventIds`: Optional - Filter specific events
 
-### 4. Events
-**Endpoint:** `GET /v4/sports/{sport}/events`
+### 4. Events (`GET /v4/sports/{sport}/events`)
 **Cost:** Free (doesn't count against quota)
 
 **Capabilities:**
@@ -102,11 +96,10 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - `sport`: Required - Sport key
 - `dateFormat`: Optional - 'unix' or 'iso'
 - `eventIds`: Optional - Filter specific events
-- `commenceTimeFrom`: Optional - Start time filter
-- `commenceTimeTo`: Optional - End time filter
+- `commenceTimeFrom`: Optional - Start time filter (ISO 8601)
+- `commenceTimeTo`: Optional - End time filter (ISO 8601)
 
-### 5. Event-Specific Odds
-**Endpoint:** `GET /v4/sports/{sport}/events/{eventId}/odds`
+### 5. Event-Specific Odds (`GET /v4/sports/{sport}/events/{eventId}/odds`)
 **Cost:** Varies based on markets and regions
 
 **Capabilities:**
@@ -116,10 +109,63 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - Granular market updates
 - Same parameter options as main odds endpoint
 
+### 6. Participants (`GET /v4/sports/{sport}/participants`)
+**Cost:** 1 credit
+
+**Capabilities:**
+- List all participants (teams or individuals) for a sport
+- Does not include players on teams
+- Includes both active and inactive participants
+
+**Parameters:**
+- `sport`: Required - Sport key
+- `apiKey`: Required - API authentication key
+
+### 7. Historical Odds (`GET /v4/historical/sports/{sport}/odds`)
+**Cost:** 10 credits per region per market
+
+**Capabilities:**
+- Historical odds data from June 6th, 2020
+- 10-minute intervals until September 2022
+- 5-minute intervals after September 2022
+- Available only on paid plans
+
+**Parameters:**
+- All parameters from the odds endpoint, plus:
+- `date`: Required - Timestamp for historical data (ISO 8601)
+
+### 8. Historical Events (`GET /v4/historical/sports/{sport}/events`)
+**Cost:** 1 credit (free if no events found)
+
+**Capabilities:**
+- List historical events at a specified timestamp
+- Includes event details without odds
+- Useful for finding historical event IDs
+
+**Parameters:**
+- Same as events endpoint, plus:
+- `date`: Required - Timestamp for historical data (ISO 8601)
+
+### 9. Historical Event Odds (`GET /v4/historical/sports/{sport}/events/{eventId}/odds`)
+**Cost:** 10 credits per region per market
+
+**Capabilities:**
+- Historical odds for a single event
+- Support for all betting markets
+- Additional markets available after May 3rd, 2023
+- Available only on paid plans
+
+**Parameters:**
+- Same as event-specific odds endpoint, plus:
+- `date`: Required - Timestamp for historical data (ISO 8601)
+
 ## Integration Notes
 
 ### Quota Management
-- Track usage through response headers
+- Track usage through response headers:
+  - `x-requests-remaining`: Credits remaining until quota reset
+  - `x-requests-used`: Credits used since last quota reset
+  - `x-requests-last`: Usage cost of last API call
 - Costs vary by endpoint and parameters
 - Some endpoints are free
 - Multiple markets/regions multiply quota cost
@@ -157,32 +203,15 @@ The Odds API provides comprehensive access to sports betting data, including liv
    - Sport-specific market availability
    - Regional variations in coverage
 
-## Example Use Cases
-
-1. **Live Odds Tracking**
-   - Monitor odds movements
-   - Compare bookmaker prices
-   - Track market changes
-
-2. **Score Updates**
-   - Live game tracking
-   - Historical results analysis
-   - Match status monitoring
-
-3. **Event Discovery**
-   - Upcoming game schedules
-   - Sport-specific calendars
-   - Regional event filtering
-
-4. **Market Analysis**
-   - Cross-bookmaker comparison
-   - Arbitrage opportunity detection
-   - Historical odds analysis
-
-5. **Betting Exchange Integration**
-   - Back/Lay odds monitoring
-   - Bet limits tracking
-   - Exchange-specific features
+## Rate Limiting
+- Requests are rate limited to protect systems
+- Status code 429 indicates rate limit reached
+- Space out requests over several seconds when rate limited
+- Quota reset period defined by subscription
+- Usage tracked per endpoint
+- Some endpoints exempt from quota
+- Multiple markets/regions affect usage
+- Remaining quota in response headers
 
 ## Error Handling
 - API returns standard HTTP status codes
@@ -190,10 +219,3 @@ The Odds API provides comprehensive access to sports betting data, including liv
 - Quota exceeded returns specific error
 - Invalid parameters clearly identified
 - Rate limiting information included
-
-## Rate Limiting
-- Quota reset period defined by subscription
-- Usage tracked per endpoint
-- Some endpoints exempt from quota
-- Multiple markets/regions affect usage
-- Remaining quota in response headers
