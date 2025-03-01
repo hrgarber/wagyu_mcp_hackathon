@@ -49,9 +49,24 @@ class OddsAPIClient {
     }
 }
 
+// Get the next test number
+function getNextTestNumber() {
+    const baseDir = path.join(process.cwd(), 'test_outputs');
+    if (!fs.existsSync(baseDir)) {
+        return 1;
+    }
+
+    const testDirs = fs.readdirSync(baseDir)
+        .filter(name => name.startsWith('test'))
+        .map(name => parseInt(name.replace('test', '')))
+        .filter(num => !isNaN(num));
+
+    return testDirs.length > 0 ? Math.max(...testDirs) + 1 : 1;
+}
+
 // Save response to file
-function saveResponse(filename, data) {
-    const outputDir = path.join(process.cwd(), 'test_outputs', 'test3');
+function saveResponse(filename, data, testNumber) {
+    const outputDir = path.join(process.cwd(), 'test_outputs', `test${testNumber}`);
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
     }
@@ -63,6 +78,7 @@ function saveResponse(filename, data) {
 // Example usage
 async function testOddsAPI() {
     const client = new OddsAPIClient(process.env.ODDS_API_KEY);
+    const testNumber = getNextTestNumber();
 
     try {
         // Get all sports (1 request)
@@ -71,7 +87,7 @@ async function testOddsAPI() {
         console.log(`Found ${sports.data.length} sports`);
         console.log(`API Requests used: ${client.requestCount}`);
         console.log(`Requests remaining: ${sports.remaining}`);
-        saveResponse('1_available_sports.json', sports);
+        saveResponse('1_available_sports.json', sports, testNumber);
 
         // Get NBA odds (1 request)
         console.log('\nFetching NBA odds...');
@@ -79,15 +95,15 @@ async function testOddsAPI() {
         console.log(`Found ${nbaOdds.data.length} games`);
         console.log(`API Requests used: ${client.requestCount}`);
         console.log(`Requests remaining: ${nbaOdds.remaining}`);
-        saveResponse('2_nba_odds.json', nbaOdds);
+        saveResponse('2_nba_odds.json', nbaOdds, testNumber);
 
     } catch (error) {
         console.error('Error:', error.message);
-        saveResponse('error_log.json', { 
-            timestamp: new Date().toISOString(), 
+        saveResponse('error_log.json', {
+            timestamp: new Date().toISOString(),
             error: error.message,
             requestsUsed: client.requestCount
-        });
+        }, testNumber);
     }
 }
 
