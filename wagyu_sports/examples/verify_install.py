@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verification script to check the installation and functionality of the Python Odds API client.
+Verification script to check the installation and functionality of the Wagyu Sports client.
 
 This script:
 1. Checks if the required dependencies are installed
@@ -72,13 +72,13 @@ def main():
                 for sport in response["data"][:3]:  # Show first 3 sports
                     print(f"- {sport.get('title', 'Unknown')}: {sport.get('key', 'Unknown')}")
             
-            print("\nThe Python Odds API client is working correctly!")
+            print("\nThe Wagyu Sports client is working correctly!")
         else:
             print("Error: Unexpected response format from the API.")
             print("Response:", response)
     
     except ImportError:
-        print("Error: Could not import the Python Odds API client.")
+        print("Error: Could not import the Wagyu Sports client.")
         print("Make sure the package is installed correctly.")
     
     except Exception as e:

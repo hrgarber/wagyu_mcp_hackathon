@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple verification script to check imports from the Python Odds API client.
+Simple verification script to check imports from the Wagyu Sports client.
 
 This script attempts to import the OddsClient class and create an instance,
 which verifies that the package is installed correctly and can be imported.
