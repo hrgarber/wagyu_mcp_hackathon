@@ -2,11 +2,30 @@
 
 Python client for The Odds API v4, providing access to sports betting data.
 
+```mermaid
+graph LR
+    User([Your Code]) --> Client[Wagyu Sports Client] --> API[The Odds API]
+    API --> Client --> User
+    
+    style User fill:#f8f8f8,stroke:#666,stroke-width:1px,color:#000
+    style Client fill:#4285F4,stroke:#2965C9,stroke-width:2px,color:#fff
+    style API fill:#F5F5F5,stroke:#999,stroke-width:1px,color:#000
+```
+
+## Directory Structure
+
+The project has been reorganized for better maintainability:
+- `wagyu_sports/build/` - Build-related files (pyproject.toml, requirements.txt, setup.py)
+- `wagyu_sports/config/` - Configuration files (.env.example, pytest.ini)
+- `wagyu_sports/docs/` - Documentation (LICENSE, README.md)
+- `wagyu_sports/examples/` - Example scripts
+- `wagyu_sports/tests/` - Test files
+
 ## Installation
 
 ```bash
-pip install -e ./wagyu_sports
-cp wagyu_sports/.env.example wagyu_sports/.env
+pip install -e .
+cp wagyu_sports/config/.env.example wagyu_sports/config/.env
 # Add your API key to .env (get one from https://the-odds-api.com/)
 ```
 
@@ -18,7 +37,7 @@ import os
 from dotenv import load_dotenv
 
 # Load API key
-load_dotenv()
+load_dotenv(dotenv_path="wagyu_sports/config/.env")
 api_key = os.getenv("ODDS_API_KEY")
 
 # Get sports data
@@ -49,7 +68,7 @@ The `wagyu_sports/examples/` directory contains:
 
 ```bash
 cd wagyu_sports
-pytest
+pytest --rootdir=. -c config/pytest.ini
 ```
 
 ## API Documentation

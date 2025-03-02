@@ -12,13 +12,13 @@ def main():
     Main function demonstrating the use of the Wagyu Sports client.
     """
     # Load environment variables
-    load_dotenv()
+    load_dotenv(dotenv_path="config/.env")
     
     # Get API key
     api_key = os.getenv("ODDS_API_KEY")
     if not api_key:
         print("Error: ODDS_API_KEY not found in environment variables")
-        print("Please create a .env file with your API key: ODDS_API_KEY=your_api_key_here")
+        print("Please copy config/.env.example to config/.env and add your API key: ODDS_API_KEY=your_api_key_here")
         return
     
     # Create client
