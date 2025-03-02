@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple test script to verify imports from the Python Odds API client.
+Simple verification script to check imports from the Python Odds API client.
+
+This script attempts to import the OddsClient class and create an instance,
+which verifies that the package is installed correctly and can be imported.
 """
 
 try:

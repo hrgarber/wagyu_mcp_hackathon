@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script to verify the installation and functionality of the Python Odds API client.
+Verification script to check the installation and functionality of the Python Odds API client.
 
 This script:
 1. Checks if the required dependencies are installed
