@@ -1,6 +1,6 @@
 # Wagyu Sports API
 
-Python client for sports betting data, providing access to The Odds API v4 and other sports data sources.
+The Wagyu Sports API client for sports betting data, providing access to The Odds API v4 and other sports data sources.
 
 ```mermaid
 graph LR
