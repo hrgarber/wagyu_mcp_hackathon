@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import requests
 
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 
 
 def format_datetime(dt_str):

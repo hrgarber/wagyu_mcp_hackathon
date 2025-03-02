@@ -17,7 +17,7 @@ import importlib.util
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Import the client
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 from dotenv import load_dotenv
 
 

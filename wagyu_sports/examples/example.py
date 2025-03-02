@@ -4,7 +4,7 @@ Example script demonstrating how to use the Python Odds API client.
 """
 import os
 from dotenv import load_dotenv
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 
 
 def main():

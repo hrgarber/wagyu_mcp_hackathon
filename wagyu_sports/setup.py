@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="python_odds_api",
+    name="wagyu_sports",
     version="0.1.0",
     author="Odds API Client Team",
     author_email="example@example.com",

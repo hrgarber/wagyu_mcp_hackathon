@@ -8,7 +8,7 @@ which verifies that the package is installed correctly and can be imported.
 
 try:
     print("Attempting to import OddsClient...")
-    from python_odds_api import OddsClient
+    from wagyu_sports import OddsClient
     print("Successfully imported OddsClient!")
     
     # Try creating an instance
