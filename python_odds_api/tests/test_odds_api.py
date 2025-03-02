@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 # Import the client
 from python_odds_api import OddsClient
+from dotenv import load_dotenv
 
 
 def test_import():
@@ -140,11 +141,16 @@ def test_make_request_error(mock_get, client):
 
 def test_api_key_env():
     """Test that the API key can be loaded from environment variables."""
-    # This test is skipped if no API key is set
+    # Load environment variables from .env file
+    load_dotenv()
+    
+    # Get API key
     api_key = os.getenv("ODDS_API_KEY")
     if not api_key:
         pytest.skip("ODDS_API_KEY not set in environment")
     
     # If we have an API key, create a client and verify it works
+    # Note: This test only verifies the API key is loaded correctly,
+    # it does NOT make any actual API calls
     client = OddsClient(api_key)
     assert client.api_key == api_key
