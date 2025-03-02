@@ -1,0 +1,14 @@
+This is a test file for our MCP file analysis server.
+It contains multiple lines of text to analyze.
+We can count words, lines, and search for patterns.
+
+Some example patterns to try:
+- Email: test@example.com
+- URL: https://modelcontextprotocol.io
+- Numbers: 123, 456, 789
+
+The file analysis tool should be able to:
+1. Count total words
+2. Count total lines
+3. Find patterns using regex
+4. Report file size and basic info
