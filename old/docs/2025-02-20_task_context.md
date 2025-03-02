@@ -4,7 +4,7 @@
 
 - Branch: `fix/python_api`
 - Working Directory: `/Users/brandonbutterwick/Documents/hackathon/wagyu_mcp_hackathon`
-- Project Location: `api_test/python_odds_api/`
+- Project Location: `api_test/wagyu_sports/`
 
 ## Background Context
 

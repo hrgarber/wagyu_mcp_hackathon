@@ -5,15 +5,15 @@ Python client for The Odds API v4, providing access to sports betting data.
 ## Installation
 
 ```bash
-pip install -e ./python_odds_api
-cp python_odds_api/.env.example python_odds_api/.env
+pip install -e ./wagyu_sports
+cp wagyu_sports/.env.example wagyu_sports/.env
 # Add your API key to .env (get one from https://the-odds-api.com/)
 ```
 
 ## Usage
 
 ```python
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 import os
 from dotenv import load_dotenv
 
@@ -39,7 +39,7 @@ odds = client.get_odds("basketball_nba", {"regions": "us", "markets": "h2h"})
 
 ## Examples
 
-The `python_odds_api/examples/` directory contains:
+The `wagyu_sports/examples/` directory contains:
 - `example.py`: Basic usage
 - `advanced_example.py`: Error handling, quota management, data processing
 - `fetch_nba_odds.py`: NBA-specific example
@@ -48,7 +48,7 @@ The `python_odds_api/examples/` directory contains:
 ## Testing
 
 ```bash
-cd python_odds_api
+cd wagyu_sports
 pytest
 ```
 

@@ -1,6 +1,6 @@
-# Python Odds API Client
+# Wagyu Sports
 
-A Python client for The Odds API v4, providing access to sports betting data.
+A Python client for sports betting data.
 
 ## Installation
 
@@ -16,7 +16,7 @@ cp .env.example .env
 ## Quick Start
 
 ```python
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 import os
 from dotenv import load_dotenv
 
@@ -32,7 +32,7 @@ print(f"Available sports: {len(sports['data'])}")
 
 ## Features
 
-- Access all endpoints of The Odds API v4
+- Access to sports betting data endpoints
 - Track API usage through response headers
 - Support for all API parameters and options
 

@@ -51,7 +51,7 @@ def main():
     
     # Try to import the client
     try:
-        from python_odds_api import OddsClient
+        from wagyu_sports import OddsClient
         
         # Create client
         client = OddsClient(api_key)
