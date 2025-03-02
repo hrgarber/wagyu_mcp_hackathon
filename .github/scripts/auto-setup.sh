@@ -1,6 +1,7 @@
 #!/bin/bash
-# Setup script for configuring git hooks
-# Run this script once after cloning the repository
+# Auto-setup script for git hooks in local development
+# This script is automatically triggered by GitHub Actions in CI/CD
+# but can also be run manually for local development
 
 # Exit on error
 set -e
@@ -9,7 +10,7 @@ set -e
 REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT"
 
-echo "Setting up git hooks..."
+echo "🔒 Setting up automatic git hooks..."
 
 # Configure git to use hooks from .github/hooks
 git config --local core.hooksPath .github/hooks
@@ -30,7 +31,7 @@ for module in .github/hooks/modules/*.sh; do
 done
 
 echo ""
-echo "Git hooks configured successfully!"
+echo "✅ Git hooks configured automatically!"
 echo "The following hooks are now active:"
 echo "- pre-commit: Prevents committing sensitive information like API keys"
 echo ""
@@ -39,3 +40,4 @@ echo "- env-check.sh: Prevents committing .env files"
 echo "- api-key-check.sh: Scans for API key patterns in code"
 echo ""
 echo "Your repository is now protected against accidental API key commits!"
+echo "This configuration will persist across all branches."

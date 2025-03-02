@@ -7,23 +7,29 @@ This directory contains git hooks designed to prevent accidental commits of sens
 - **Prevents committing `.env` files** that typically contain sensitive information
 - **Scans for API key patterns** in staged changes
 - **Modular design** that's easy to extend with additional checks
-- **Repository-wide configuration** using Git's core.hooksPath
+- **Fully automated setup** using GitHub Actions
 
-## Installation
+## Automated Installation
 
-The hooks are configured to be a default part of the repository using Git's core.hooksPath feature. New developers only need to run the setup script once after cloning:
+The hooks are automatically configured by GitHub Actions. No manual setup required!
+
+For local development without GitHub Actions, you can run:
 
 ```bash
-# Make the script executable
-chmod +x .github/scripts/setup.sh
-
-# Run the setup script
-.github/scripts/setup.sh
+.github/scripts/auto-setup.sh
 ```
 
 This will:
 1. Configure Git to use hooks from `.github/hooks` instead of `.git/hooks`
 2. Make all hook scripts executable
+3. Set up automatic protection against API key commits
+
+## CI/CD Integration
+
+The GitHub Actions workflow in `.github/workflows/auto-setup-hooks.yml` automatically:
+1. Sets up the hooks for all developers
+2. Verifies the hooks are configured correctly
+3. Checks for any .env files that might have been committed
 
 ## How It Works
 

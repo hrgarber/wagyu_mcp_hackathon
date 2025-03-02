@@ -1,0 +1,40 @@
+name: Auto Setup Git Hooks
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  setup-hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Configure Git Hooks
+        run: |
+          chmod +x .github/scripts/auto-setup.sh
+          .github/scripts/auto-setup.sh
+          
+      - name: Verify Hooks Configuration
+        run: |
+          echo "Verifying hooks configuration..."
+          if [ "$(git config --get core.hooksPath)" = ".github/hooks" ]; then
+            echo "✅ Hooks configured successfully"
+          else
+            echo "❌ Hooks configuration failed"
+            exit 1
+          fi
+          
+      - name: Check for .env Files
+        run: |
+          echo "Checking for .env files..."
+          if git ls-files | grep -q "\.env$"; then
+            echo "⚠️ Warning: .env files found in repository"
+            git ls-files | grep "\.env$"
+          else
+            echo "✅ No .env files found in repository"
+          fi

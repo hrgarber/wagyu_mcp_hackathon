@@ -18,31 +18,30 @@ We've created a new branch `feature/git_action_.env` with git hooks to prevent a
 2. **Environment file check**: Prevents committing `.env` files
 3. **API key pattern detection**: Scans for API keys in staged changes
 
-## How to Use the Git Hooks
+## Fully Automated Git Hooks
 
-1. Check out the `feature/git_action_.env` branch:
-   ```bash
-   git checkout feature/git_action_.env
-   ```
+The git hooks are now **fully automated** using GitHub Actions:
 
-2. Run the setup script once:
-   ```bash
-   chmod +x .github/scripts/setup.sh
-   .github/scripts/setup.sh
-   ```
+1. **No manual setup required** - hooks are configured automatically by CI/CD
+2. **Works across all branches** - protection is consistent everywhere
+3. **Automatic for all developers** - no need to run setup scripts
 
-3. The hooks will now run automatically before each commit, preventing accidental exposure of API keys.
+### For Local Development
 
-### For New Developers
-
-When new developers clone the repository, they only need to run the setup script once:
+If you're working locally without GitHub Actions, you can run:
 
 ```bash
-chmod +x .github/scripts/setup.sh
-.github/scripts/setup.sh
+.github/scripts/auto-setup.sh
 ```
 
-This configures Git to use the hooks from `.github/hooks` instead of the default `.git/hooks` directory, making the hooks a default part of the repository.
+This will configure Git to use the hooks from `.github/hooks` instead of the default `.git/hooks` directory, making the hooks a default part of the repository.
+
+### CI/CD Integration
+
+The GitHub Actions workflow in `.github/workflows/auto-setup-hooks.yml` automatically:
+1. Sets up the hooks for all developers
+2. Verifies the hooks are configured correctly
+3. Checks for any .env files that might have been committed
 
 ## Best Practices for API Key Security
 
