@@ -1,4 +1,4 @@
-# Makefile for Python Odds API Client
+# Makefile for Wagyu Sports
 
 .PHONY: install test pytest clean examples verify
 

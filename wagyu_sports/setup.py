@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Setup script for the Python Odds API client.
+Setup script for the Wagyu Sports client.
 """
 from setuptools import setup, find_packages
 
@@ -10,9 +10,9 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="wagyu_sports",
     version="0.1.0",
-    author="Odds API Client Team",
+    author="Wagyu Sports Team",
     author_email="example@example.com",
-    description="A Python client for The Odds API v4",
+    description="A Python client for sports betting data",
     long_description=long_description,
     long_description_content_type="text/markdown",
     # URL removed as this is now part of a larger repository
