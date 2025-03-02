@@ -1,26 +1,57 @@
-# Git Security Hooks
+# Python Odds API Client
 
-This repository includes git hooks to prevent accidentally committing API keys and sensitive files.
+Python client for The Odds API v4, providing access to sports betting data.
 
-## Fully Automated Setup
-
-The hooks are automatically configured by GitHub Actions. No manual setup required!
-
-For local development, you can run:
+## Installation
 
 ```bash
-.github/scripts/auto-setup.sh
+pip install -e ./python_odds_api
+cp python_odds_api/.env.example python_odds_api/.env
+# Add your API key to .env (get one from https://the-odds-api.com/)
 ```
 
-## What This Does
+## Usage
 
-- Prevents committing `.env` files
-- Blocks commits containing API keys
-- Works automatically across all branches
-- Configured automatically by CI/CD
+```python
+from python_odds_api import OddsClient
+import os
+from dotenv import load_dotenv
 
-## How It Works
+# Load API key
+load_dotenv()
+api_key = os.getenv("ODDS_API_KEY")
 
-We use GitHub Actions to automatically configure git hooks for all developers. The hooks are stored in `.github/hooks` and automatically set up when you push or pull.
+# Get sports data
+client = OddsClient(api_key)
+sports = client.get_sports()
+print(f"Available sports: {len(sports['data'])}")
 
-[More details in `.github/README.md`]
+# Get odds for NBA
+odds = client.get_odds("basketball_nba", {"regions": "us", "markets": "h2h"})
+```
+
+## Features
+
+- Access all endpoints of The Odds API v4
+- Track API usage through response headers
+- Support for all API parameters and options
+- Utility functions for saving responses and testing
+
+## Examples
+
+The `python_odds_api/examples/` directory contains:
+- `example.py`: Basic usage
+- `advanced_example.py`: Error handling, quota management, data processing
+- `fetch_nba_odds.py`: NBA-specific example
+- `verify_install.py`: Installation verification
+
+## Testing
+
+```bash
+cd python_odds_api
+pytest
+```
+
+## API Documentation
+
+For full API documentation, visit [The Odds API](https://the-odds-api.com/liveapi/guides/v4/).
