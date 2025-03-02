@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+python_odds_api.egg-info/PKG-INFO
+python_odds_api.egg-info/SOURCES.txt
+python_odds_api.egg-info/dependency_links.txt
+python_odds_api.egg-info/requires.txt
+python_odds_api.egg-info/top_level.txt
