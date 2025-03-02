@@ -1,0 +1,22 @@
+#!/bin/bash
+# Main pre-commit hook that calls individual check modules
+# This hook prevents committing sensitive information like API keys
+
+# Exit on error
+set -e
+
+SCRIPT_DIR="$(dirname "$0")"
+MODULES_DIR="$SCRIPT_DIR/modules"
+
+echo "Running pre-commit checks..."
+
+# Run each check module
+for module in "$MODULES_DIR"/*.sh; do
+  if [ -f "$module" ] && [ -x "$module" ]; then
+    echo "Running $(basename "$module")..."
+    "$module"
+  fi
+done
+
+echo "All pre-commit checks passed!"
+exit 0
