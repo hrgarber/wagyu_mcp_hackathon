@@ -6,6 +6,5 @@ additional function calling capabilities for more dynamic queries.
 """
 
 from .enhanced_client import EnhancedOddsClient
-from .query_engine import OddsQueryEngine
 
-__all__ = ['EnhancedOddsClient', 'OddsQueryEngine']
+__all__ = ['EnhancedOddsClient']
