@@ -47,7 +47,7 @@ See the `examples/` directory for usage patterns:
 
 ## Testing
 
-Run the tests using pytest:
+The testing suite has been cleaned up and improved for better organization and reliability. Run the tests using pytest:
 
 ```bash
 # Install pytest if not already installed
@@ -61,3 +61,11 @@ Or use the Makefile:
 
 ```bash
 make test
+```
+
+The test suite includes:
+- Import and dependency verification
+- Client initialization tests
+- API method tests with proper mocking
+- Error handling tests
+- Environment variable loading tests

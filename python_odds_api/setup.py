@@ -15,7 +15,7 @@ setup(
     description="A Python client for The Odds API v4",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/python_odds_api",
+    # URL removed as this is now part of a larger repository
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
