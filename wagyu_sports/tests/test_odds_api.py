@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Tests for the Python Odds API client.
+Tests for the Wagyu Sports client.
 
-This file contains all tests for the Python Odds API client, including:
+This file contains all tests for the Wagyu Sports client, including:
 - Unit tests for the OddsClient class
 - Import verification
 - Installation verification

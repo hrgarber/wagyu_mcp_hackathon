@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Utility functions for working with the Odds API client.
+Utility functions for working with the Wagyu Sports client.
 """
 import os
 import json
@@ -80,7 +80,7 @@ def save_response(filename: str, data: Dict[str, Any], test_number: Optional[int
     return file_path
 
 
-def test_odds_api() -> Tuple[str, str]:
+def test_wagyu_sports() -> Tuple[str, str]:
     """
     Example function that demonstrates full API workflow.
     
@@ -138,4 +138,4 @@ def test_odds_api() -> Tuple[str, str]:
 
 if __name__ == "__main__":
     # Run the test if this file is executed directly
-    test_odds_api()
+    test_wagyu_sports()
