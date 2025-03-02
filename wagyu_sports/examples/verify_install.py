@@ -34,19 +34,19 @@ def main():
     
     if not all_installed:
         print("\nPlease install all required dependencies and try again.")
-        print("You can install them using: pip install -r requirements.txt")
+        print("You can install them using: pip install -r build/requirements.txt")
         return
     
     # Now that we know dependencies are installed, import them
     from dotenv import load_dotenv
     
     # Check for API key
-    load_dotenv()
+    load_dotenv(dotenv_path="config/.env")
     api_key = os.getenv("ODDS_API_KEY")
     
     if not api_key:
         print("Error: ODDS_API_KEY not found in environment variables.")
-        print("Please create a .env file with your API key: ODDS_API_KEY=your_api_key_here")
+        print("Please copy config/.env.example to .env and add your API key: ODDS_API_KEY=your_api_key_here")
         return
     
     # Try to import the client

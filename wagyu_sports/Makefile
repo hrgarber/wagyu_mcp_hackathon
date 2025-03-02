@@ -4,19 +4,19 @@
 
 # Install the package in development mode
 install:
-	pip install -e .
+	pip install -e . -f build/
 
 # Install dependencies
 deps:
-	pip install -r requirements.txt
+	pip install -r build/requirements.txt
 
 # Run pytest
 test:
-	pytest
+	pytest --rootdir=. -c config/pytest.ini
 
 # Run pytest with verbose output
 pytest-v:
-	pytest -v
+	pytest --rootdir=. -c config/pytest.ini -v
 
 # Run the example scripts
 examples:
@@ -36,17 +36,17 @@ fetch-nba:
 
 # Clean up build artifacts
 clean:
-	rm -rf build/
 	rm -rf dist/
 	rm -rf *.egg-info/
 	find . -name "__pycache__" -type d -exec rm -rf {} +
 	find . -name "*.pyc" -delete
 	find . -name "*.pyo" -delete
 	find . -name "*.pyd" -delete
+	rm -rf test_outputs/
 
 # Build the package
 build:
-	python setup.py sdist bdist_wheel
+	python build/setup.py sdist bdist_wheel
 
 # Help command
 help:

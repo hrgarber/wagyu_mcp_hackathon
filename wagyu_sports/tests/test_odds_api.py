@@ -142,7 +142,7 @@ def test_make_request_error(mock_get, client):
 def test_api_key_env():
     """Test that the API key can be loaded from environment variables."""
     # Load environment variables from .env file
-    load_dotenv()
+    load_dotenv(dotenv_path="config/.env")
     
     # Get API key
     api_key = os.getenv("ODDS_API_KEY")
