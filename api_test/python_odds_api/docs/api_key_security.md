@@ -25,13 +25,24 @@ We've created a new branch `feature/git_action_.env` with git hooks to prevent a
    git checkout feature/git_action_.env
    ```
 
-2. Install the hooks:
+2. Run the setup script once:
    ```bash
-   chmod +x .github/scripts/install-hooks.sh
-   .github/scripts/install-hooks.sh
+   chmod +x .github/scripts/setup.sh
+   .github/scripts/setup.sh
    ```
 
 3. The hooks will now run automatically before each commit, preventing accidental exposure of API keys.
+
+### For New Developers
+
+When new developers clone the repository, they only need to run the setup script once:
+
+```bash
+chmod +x .github/scripts/setup.sh
+.github/scripts/setup.sh
+```
+
+This configures Git to use the hooks from `.github/hooks` instead of the default `.git/hooks` directory, making the hooks a default part of the repository.
 
 ## Best Practices for API Key Security
 

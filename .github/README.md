@@ -7,18 +7,23 @@ This directory contains git hooks designed to prevent accidental commits of sens
 - **Prevents committing `.env` files** that typically contain sensitive information
 - **Scans for API key patterns** in staged changes
 - **Modular design** that's easy to extend with additional checks
+- **Repository-wide configuration** using Git's core.hooksPath
 
 ## Installation
 
-Run the installation script to set up the hooks:
+The hooks are configured to be a default part of the repository using Git's core.hooksPath feature. New developers only need to run the setup script once after cloning:
 
 ```bash
 # Make the script executable
-chmod +x .github/scripts/install-hooks.sh
+chmod +x .github/scripts/setup.sh
 
-# Run the installation script
-.github/scripts/install-hooks.sh
+# Run the setup script
+.github/scripts/setup.sh
 ```
+
+This will:
+1. Configure Git to use hooks from `.github/hooks` instead of `.git/hooks`
+2. Make all hook scripts executable
 
 ## How It Works
 
