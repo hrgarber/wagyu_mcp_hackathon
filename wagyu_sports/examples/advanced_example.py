@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advanced example script demonstrating more complex usage of the Python Odds API client.
+Advanced example script demonstrating more complex usage of the Wagyu Sports client.
 
 This example shows:
 1. Error handling
@@ -31,7 +31,7 @@ def get_upcoming_games(client, sport_key, hours=24):
     Get upcoming games for a sport within the next X hours.
     
     Args:
-        client (OddsClient): The Odds API client
+        client (OddsClient): The Wagyu Sports client
         sport_key (str): Sport key (e.g., 'basketball_nba')
         hours (int): Number of hours to look ahead
         

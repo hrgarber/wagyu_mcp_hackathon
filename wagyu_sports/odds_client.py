@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Odds API Client Module
+Wagyu Sports Client Module
 
-This module provides a client for interacting with The Odds API v4.
+This module provides a client for interacting with sports betting data APIs.
 """
 import requests
 from typing import Dict, List, Optional, Any, Union
@@ -10,7 +10,7 @@ from typing import Dict, List, Optional, Any, Union
 
 class OddsClient:
     """
-    Client for The Odds API v4.
+    Client for sports betting data.
     
     This class provides methods for fetching sports betting data including
     available sports and odds for specific sports.
@@ -20,7 +20,7 @@ class OddsClient:
     
     def __init__(self, api_key: str):
         """
-        Initialize the Odds API client.
+        Initialize the Wagyu Sports client.
         
         Args:
             api_key (str): API key for authentication with The Odds API
@@ -77,7 +77,7 @@ class OddsClient:
     
     def make_request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
-        Make a request to The Odds API.
+        Make a request to the sports data API.
         
         Args:
             endpoint (str): API endpoint (e.g., '/sports')

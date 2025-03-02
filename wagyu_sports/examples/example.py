@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example script demonstrating how to use the Python Odds API client.
+Example script demonstrating how to use the Wagyu Sports client.
 """
 import os
 from dotenv import load_dotenv
@@ -9,7 +9,7 @@ from wagyu_sports import OddsClient
 
 def main():
     """
-    Main function demonstrating the use of the Odds API client.
+    Main function demonstrating the use of the Wagyu Sports client.
     """
     # Load environment variables
     load_dotenv()

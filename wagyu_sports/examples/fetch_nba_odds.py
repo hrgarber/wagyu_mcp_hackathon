@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Example script for fetching NBA odds using the Python Odds API client.
+Example script for fetching NBA odds using the Wagyu Sports client.
 
-This script demonstrates how to use the Odds API client to fetch NBA odds
+This script demonstrates how to use the Wagyu Sports client to fetch NBA odds
 and save the response to a file.
 """
 import os
@@ -13,11 +13,11 @@ import requests
 
 def fetch_nba_odds():
     """
-    Fetch NBA odds from the Odds API.
+    Fetch NBA odds from the sports data API.
     
     This function:
     1. Loads the API key from environment variables
-    2. Makes a direct request to the Odds API for NBA odds
+    2. Makes a direct request to the sports data API for NBA odds
     3. Saves the response to a file
     
     Returns:
