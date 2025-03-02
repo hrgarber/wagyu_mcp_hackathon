@@ -16,12 +16,12 @@ Currently, the package can be installed with `pip install -e .` but fails with a
 ### 2.1. Create a Modern Package Structure
 
 ```
-api_test/python_odds_api/
+api_test/wagyu_sports/
 ├── pyproject.toml         # New file for modern Python packaging
 ├── setup.py               # Updated version
 ├── README.md             # Existing file
 ├── requirements.txt      # Existing file
-├── python_odds_api/      # Package directory (new or renamed)
+├── wagyu_sports/      # Package directory (new or renamed)
 │   ├── __init__.py       # Updated to expose the correct modules
 │   ├── odds_client.py    # Main module
 │   └── utils.py          # Utilities module

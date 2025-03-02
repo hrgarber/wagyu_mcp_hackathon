@@ -16,7 +16,7 @@ cp .env.example .env
 ## Quick Start
 
 ```python
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 import os
 from dotenv import load_dotenv
 

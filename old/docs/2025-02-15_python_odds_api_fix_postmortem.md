@@ -11,10 +11,10 @@
 1. Added `pyproject.toml` to fix deprecation warning
 2. Restructured package to use proper nested directory:
    ```
-   python_odds_api/
+   wagyu_sports/
    ├── pyproject.toml
    ├── setup.py
-   └── python_odds_api/  <-- New subdirectory
+   └── wagyu_sports/  <-- New subdirectory
        ├── __init__.py
        ├── odds_client.py
        └── utils.py
@@ -35,7 +35,7 @@ These decisions were made to implement the most critical fixes with minimal chan
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd wagyu_mcp_hackathon/api_test/python_odds_api
+cd wagyu_mcp_hackathon/api_test/wagyu_sports
 
 # Install the package
 pip install -e .
@@ -51,7 +51,7 @@ python run_test.py
 ## Usage Example
 
 ```python
-from python_odds_api import OddsClient
+from wagyu_sports import OddsClient
 from dotenv import load_dotenv
 import os
 
