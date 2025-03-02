@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script for the Odds API client.
+Example script for fetching NBA odds using the Python Odds API client.
 
 This script demonstrates how to use the Odds API client to fetch NBA odds
 and save the response to a file.
@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 import requests
 
 
-def test_odds_api():
+def fetch_nba_odds():
     """
-    Simple test function for the Odds API.
+    Fetch NBA odds from the Odds API.
     
     This function:
     1. Loads the API key from environment variables
@@ -68,5 +68,5 @@ def test_odds_api():
 
 
 if __name__ == "__main__":
-    # Run the test if this file is executed directly
-    test_odds_api()
+    # Run the example if this file is executed directly
+    fetch_nba_odds()

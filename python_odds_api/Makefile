@@ -1,6 +1,6 @@
 # Makefile for Python Odds API Client
 
-.PHONY: install test unittest clean
+.PHONY: install test pytest clean examples verify
 
 # Install the package in development mode
 install:
@@ -10,21 +10,29 @@ install:
 deps:
 	pip install -r requirements.txt
 
-# Run the test script
+# Run pytest
 test:
-	python run_test.py
+	pytest
 
-# Run unit tests
-unittest:
-	python test_odds_client.py
+# Run pytest with verbose output
+pytest-v:
+	pytest -v
 
-# Run the example script
-example:
-	python example.py
+# Run the example scripts
+examples:
+	python examples/example.py
 
 # Run the advanced example script
 advanced:
-	python advanced_example.py
+	python examples/advanced_example.py
+
+# Verify installation
+verify:
+	python examples/verify_install.py
+
+# Fetch NBA odds example
+fetch-nba:
+	python examples/fetch_nba_odds.py
 
 # Clean up build artifacts
 clean:
@@ -43,11 +51,13 @@ build:
 # Help command
 help:
 	@echo "Available commands:"
-	@echo "  make install  - Install the package in development mode"
-	@echo "  make deps     - Install dependencies"
-	@echo "  make test     - Run the test script"
-	@echo "  make unittest - Run unit tests"
-	@echo "  make example  - Run the example script"
-	@echo "  make advanced - Run the advanced example script"
-	@echo "  make clean    - Clean up build artifacts"
-	@echo "  make build    - Build the package"
+	@echo "  make install   - Install the package in development mode"
+	@echo "  make deps      - Install dependencies"
+	@echo "  make test      - Run pytest"
+	@echo "  make pytest-v  - Run pytest with verbose output"
+	@echo "  make examples  - Run the basic example script"
+	@echo "  make advanced  - Run the advanced example script"
+	@echo "  make verify    - Verify installation"
+	@echo "  make fetch-nba - Run the NBA odds example"
+	@echo "  make clean     - Clean up build artifacts"
+	@echo "  make build     - Build the package"
