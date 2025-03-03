@@ -4,8 +4,14 @@ Setup script for the Wagyu Sports client.
 """
 from setuptools import setup, find_packages
 
-with open("docs/README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Use a relative path that works in the package structure
+import os
+readme_path = os.path.join(os.path.dirname(__file__), "..", "docs", "LICENSE")
+try:
+    with open(readme_path, "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "Wagyu Sports - A Python client for sports betting data"
 
 setup(
     name="wagyu_sports",

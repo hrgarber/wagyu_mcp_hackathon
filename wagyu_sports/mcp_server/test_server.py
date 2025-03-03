@@ -8,21 +8,32 @@ which uses mock data instead of making real API calls.
 import asyncio
 import os
 import sys
+import argparse
 from pathlib import Path
 
-# Add parent directory to path to import from wagyu_sports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
-from wagyu_sports.mcp import OddsMcpServer
+# Import directly from the current directory
+from odds_client_server import OddsMcpServer
 
 async def main():
-    """Run the MCP server in test mode."""
-    print("Starting Wagyu Sports MCP Server in test mode...")
-    print("This will use mock data instead of making real API calls.")
+    """Run the MCP server."""
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Wagyu Sports MCP Server")
+    parser.add_argument("--test-mode", action="store_true", help="Use mock data instead of real API calls")
+    args = parser.parse_args()
+    
+    # Determine if we should use test mode
+    test_mode = args.test_mode
+    
+    if test_mode:
+        print("Starting Wagyu Sports MCP Server in test mode...")
+        print("This will use mock data instead of making real API calls.")
+    else:
+        print("Starting Wagyu Sports MCP Server in live mode...")
+        print("This will make real API calls that cost money.")
     print()
     
-    # Initialize server in test mode
-    server = OddsMcpServer(test_mode=True)
+    # Initialize server
+    server = OddsMcpServer(test_mode=test_mode)
     
     # Run the server
     await server.run()
@@ -34,7 +45,7 @@ if __name__ == "__main__":
     print()
     print("To test this server with mcp_inspector:")
     print("1. In another terminal, run:")
-    print("   npx @modelcontextprotocol/inspector python wagyu_sports/mcp/test_server.py")
+    print("   npx @modelcontextprotocol/inspector python wagyu_sports/mcp_server/test_server.py")
     print()
     print("2. The inspector will connect to this server and allow you to:")
     print("   - View and test available tools")

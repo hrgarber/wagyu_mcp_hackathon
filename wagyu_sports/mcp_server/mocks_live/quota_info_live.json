@@ -1,0 +1,10 @@
+{
+  "_metadata": {
+    "captured_at": "2025-03-03T01:50:08-08:00",
+    "description": "Live data captured from the Odds API",
+    "tool": "get_quota_info",
+    "parameters": {}
+  },
+  "remaining_requests": "488",
+  "used_requests": "12"
+}
