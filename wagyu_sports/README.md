@@ -39,16 +39,6 @@ cp config/.env.example config/.env
 # Edit .env and add your API key from https://the-odds-api.com/
 ```
 
-## Running the MCP Server
-
-```bash
-# Run the MCP server directly
-uvx run wagyu_sports.mcp_server.test_server
-
-# Or run with test mode enabled (uses mock data)
-uvx run wagyu_sports.mcp_server.test_server --test-mode
-```
-
 ## Quick Start
 
 ```python
@@ -109,3 +99,7 @@ The test suite includes:
   - **Direct tests**: Simpler tests that directly test server methods
 
 See the `tests/README.md` file for more details on the testing approach.
+
+## For MCP Server Information
+
+See the main README.md file for details on running and configuring the MCP server.
