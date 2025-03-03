@@ -17,7 +17,11 @@ graph LR
 
 1. **Install the package**:
    ```bash
-   uvx install wagyu_sports
+   # Using pip (recommended)
+   pip install wagyu_sports
+   
+   # Or using uv (alternative)
+   uv install wagyu_sports
    ```
 
 2. **Add to your MCP configuration**:
@@ -28,8 +32,8 @@ graph LR
    {
      "mcpServers": {
        "wagyu-sports": {
-         "command": "uvx",
-         "args": ["run", "wagyu_sports.mcp_server.test_server", "--test-mode"],
+         "command": "python",
+         "args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"],
          "env": {
            "ODDS_API_KEY": "your_api_key_here"
          },
@@ -46,8 +50,8 @@ graph LR
    {
      "mcpServers": {
        "wagyu-sports": {
-         "command": "uvx",
-         "args": ["run", "wagyu_sports.mcp_server.test_server", "--test-mode"],
+         "command": "python",
+         "args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"],
          "env": {
            "ODDS_API_KEY": "your_api_key_here"
          },
@@ -86,7 +90,7 @@ To use test mode:
 
 Example configuration for test mode:
 ```json
-"args": ["run", "wagyu_sports.mcp_server.test_server", "--test-mode"]
+"args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"]
 ```
 
 ### Real Mode (For Production Use)
@@ -103,7 +107,7 @@ To use real mode:
 
 Example configuration for real mode:
 ```json
-"args": ["run", "wagyu_sports.mcp_server.test_server"],
+"args": ["-m", "wagyu_sports.mcp_server.test_server"],
 "env": {
   "ODDS_API_KEY": "your_actual_api_key_here"
 }
@@ -111,7 +115,7 @@ Example configuration for real mode:
 
 You can also run the server directly with:
 ```bash
-uvx run wagyu_sports.mcp_server.test_server --api-key=your_api_key_here
+python -m wagyu_sports.mcp_server.test_server --api-key=your_api_key_here
 ```
 
 ## Development
@@ -124,10 +128,10 @@ git clone https://github.com/your-username/wagyu_mcp_hackathon.git
 cd wagyu_mcp_hackathon
 
 # Install in development mode
-uvx install -e .
+pip install -e .
 
 # Run tests
-uvx run pytest wagyu_sports/tests
+python -m pytest wagyu_sports/tests
 ```
 
 ## Project Structure
