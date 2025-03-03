@@ -6,9 +6,7 @@ import sys
 import pytest
 from unittest.mock import MagicMock, patch
 
-# Add the parent directory to the path so we can import the package
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+# Import directly from the module
 from wagyu_sports.mcp_server.odds_client_server import OddsMcpServer
 
 @pytest.mark.asyncio
