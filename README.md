@@ -33,7 +33,7 @@ graph LR
      "mcpServers": {
        "wagyu-sports": {
          "command": "python",
-         "args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"],
+         "args": ["/absolute/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py", "--test-mode"],
          "env": {
            "ODDS_API_KEY": "your_api_key_here"
          },
@@ -51,7 +51,7 @@ graph LR
      "mcpServers": {
        "wagyu-sports": {
          "command": "python",
-         "args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"],
+         "args": ["/absolute/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py", "--test-mode"],
          "env": {
            "ODDS_API_KEY": "your_api_key_here"
          },
@@ -61,6 +61,8 @@ graph LR
      }
    }
    ```
+
+   > **IMPORTANT**: Replace `/absolute/path/to/wagyu_mcp_hackathon` with the actual full path to your repository. For example: `/Users/john/Documents/hackathon/wagyu_mcp_hackathon`.
 
 3. **Get an API key** from [The Odds API](https://the-odds-api.com/) and replace `your_api_key_here` in the configuration.
 
@@ -90,7 +92,7 @@ To use test mode:
 
 Example configuration for test mode:
 ```json
-"args": ["-m", "wagyu_sports.mcp_server.test_server", "--test-mode"]
+"args": ["/absolute/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py", "--test-mode"]
 ```
 
 ### Real Mode (For Production Use)
@@ -107,7 +109,7 @@ To use real mode:
 
 Example configuration for real mode:
 ```json
-"args": ["-m", "wagyu_sports.mcp_server.test_server"],
+"args": ["/absolute/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py"],
 "env": {
   "ODDS_API_KEY": "your_actual_api_key_here"
 }
@@ -115,7 +117,7 @@ Example configuration for real mode:
 
 You can also run the server directly with:
 ```bash
-python -m wagyu_sports.mcp_server.test_server --api-key=your_api_key_here
+python /path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py --api-key=your_api_key_here
 ```
 
 ## Development
@@ -132,6 +134,12 @@ pip install -e .
 
 # Run tests
 python -m pytest wagyu_sports/tests
+
+# Run the server directly (test mode)
+python wagyu_sports/mcp_server/test_server.py --test-mode
+
+# Run the server directly (real mode)
+python wagyu_sports/mcp_server/test_server.py --api-key=your_api_key_here
 ```
 
 ## Project Structure
