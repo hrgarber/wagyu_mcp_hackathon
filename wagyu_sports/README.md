@@ -1,15 +1,18 @@
 # Wagyu Sports
 
-A Python client for sports betting data.
+A Python client for sports betting data with MCP server integration.
 
 ```mermaid
 graph LR
     User([Your Code]) --> Client[Wagyu Sports Client] --> API[The Odds API]
+    MCP[MCP Server] --> Client
+    Client --> MCP
     API --> Client --> User
     
     style User fill:#f8f8f8,stroke:#666,stroke-width:1px,color:#000
     style Client fill:#4285F4,stroke:#2965C9,stroke-width:2px,color:#fff
     style API fill:#F5F5F5,stroke:#999,stroke-width:1px,color:#000
+    style MCP fill:#34A853,stroke:#1E8E3E,stroke-width:2px,color:#fff
 ```
 
 ## Directory Structure
@@ -19,6 +22,7 @@ The project has been reorganized for better maintainability:
 - `config/` - Configuration files (.env.example, pytest.ini)
 - `docs/` - Documentation (LICENSE, README.md)
 - `examples/` - Example scripts
+- `mcp_server/` - Model Context Protocol (MCP) server implementation
 - `tests/` - Test files
 
 ## Installation
@@ -70,10 +74,13 @@ The testing suite has been cleaned up and improved for better organization and r
 
 ```bash
 # Install pytest if not already installed
-pip install pytest
+pip install pytest pytest-asyncio
 
-# Run tests
+# Run all tests
 pytest --rootdir=. -c config/pytest.ini
+
+# Run specific test file
+pytest tests/test_simple_mcp.py
 ```
 
 Or use the Makefile:
@@ -83,8 +90,9 @@ make test
 ```
 
 The test suite includes:
-- Import and dependency verification
-- Client initialization tests
-- API method tests with proper mocking
-- Error handling tests
-- Environment variable loading tests
+- **API Client Tests**: Tests for the core Odds API client functionality
+- **MCP Server Tests**: Tests for the MCP server implementation
+  - **Client-based tests**: Test the full MCP protocol implementation
+  - **Direct tests**: Simpler tests that directly test server methods
+
+See the `tests/README.md` file for more details on the testing approach.
