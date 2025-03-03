@@ -51,17 +51,21 @@ class OddsMcpServer:
         """Register MCP tools."""
         
         @self.server.tool()
-        async def get_sports(all_sports: bool = False) -> str:
+        async def get_sports(all_sports: bool = False, use_test_mode: Optional[bool] = None) -> str:
             """
             Get a list of available sports.
             
             Args:
                 all_sports: Include out-of-season sports if True
+                use_test_mode: Override server test_mode setting (True for mock data, False for real API)
                 
             Returns:
                 JSON string with sports data
             """
-            if self.test_mode:
+            # Determine if we should use test mode
+            test_mode = use_test_mode if use_test_mode is not None else self.test_mode
+            
+            if test_mode:
                 return await self._get_mock_data("sports_list.json")
             
             result = self.client.get_sports(all_sports=all_sports)
@@ -71,7 +75,8 @@ class OddsMcpServer:
         async def get_odds(sport: str, regions: Optional[str] = None, 
                           markets: Optional[str] = None, 
                           odds_format: Optional[str] = None,
-                          date_format: Optional[str] = None) -> str:
+                          date_format: Optional[str] = None,
+                          use_test_mode: Optional[bool] = None) -> str:
             """
             Get odds for a specific sport.
             
@@ -81,11 +86,15 @@ class OddsMcpServer:
                 markets: Comma-separated list of markets (e.g., 'h2h,spreads')
                 odds_format: Format for odds ('decimal' or 'american')
                 date_format: Format for dates ('unix' or 'iso')
+                use_test_mode: Override server test_mode setting (True for mock data, False for real API)
                 
             Returns:
                 JSON string with odds data
             """
-            if self.test_mode:
+            # Determine if we should use test mode
+            test_mode = use_test_mode if use_test_mode is not None else self.test_mode
+            
+            if test_mode:
                 if sport == "basketball_nba":
                     return await self._get_mock_data("nba_games.json")
                 return await self._get_mock_data("game_odds_all_books.json")
@@ -104,14 +113,20 @@ class OddsMcpServer:
             return json.dumps(result, indent=2)
         
         @self.server.tool()
-        async def get_quota_info() -> str:
+        async def get_quota_info(use_test_mode: Optional[bool] = None) -> str:
             """
             Get API quota information.
             
+            Args:
+                use_test_mode: Override server test_mode setting (True for mock data, False for real API)
+                
             Returns:
                 JSON string with quota information
             """
-            if self.test_mode:
+            # Determine if we should use test mode
+            test_mode = use_test_mode if use_test_mode is not None else self.test_mode
+            
+            if test_mode:
                 return json.dumps({
                     "remaining_requests": "100",
                     "used_requests": "50"
