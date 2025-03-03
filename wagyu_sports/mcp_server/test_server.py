@@ -13,7 +13,7 @@ from pathlib import Path
 # Add parent directory to path to import from wagyu_sports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from wagyu_sports.mcp import OddsMcpServer
+from wagyu_sports.mcp_server import OddsMcpServer
 
 async def main():
     """Run the MCP server in test mode."""
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print()
     print("To test this server with mcp_inspector:")
     print("1. In another terminal, run:")
-    print("   npx @modelcontextprotocol/inspector python wagyu_sports/mcp/test_server.py")
+    print("   npx @modelcontextprotocol/inspector python wagyu_sports/mcp_server/test_server.py")
     print()
     print("2. The inspector will connect to this server and allow you to:")
     print("   - View and test available tools")
