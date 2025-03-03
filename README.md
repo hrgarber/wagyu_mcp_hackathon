@@ -15,16 +15,23 @@ graph LR
 
 ## Quick Setup
 
-1. **Install the package**:
+1. **Clone the repository**:
    ```bash
-   # Using pip (recommended)
-   pip install wagyu_sports
-   
-   # Or using uv (alternative)
-   uv install wagyu_sports
+   # Clone the repository
+   git clone https://github.com/your-username/wagyu_mcp_hackathon.git
+   cd wagyu_mcp_hackathon
    ```
 
-2. **Add to your MCP configuration**:
+2. **Install the package**:
+   ```bash
+   # Using pip (recommended)
+   pip install -e .
+   
+   # Or using uv (alternative)
+   uv install -e .
+   ```
+
+3. **Add to your MCP configuration**:
 
    For Cline, add to `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`:
 
@@ -64,9 +71,9 @@ graph LR
 
    > **IMPORTANT**: Replace `/absolute/path/to/wagyu_mcp_hackathon` with the actual full path to your repository. For example: `/Users/john/Documents/hackathon/wagyu_mcp_hackathon`.
 
-3. **Get an API key** from [The Odds API](https://the-odds-api.com/) and replace `your_api_key_here` in the configuration.
+4. **Get an API key** from [The Odds API](https://the-odds-api.com/) and replace `your_api_key_here` in the configuration.
 
-4. **Restart your MCP client** (Cline or Claude Desktop).
+5. **Restart your MCP client** (Cline or Claude Desktop).
 
 ## Available Tools
 
@@ -95,7 +102,7 @@ Example configuration for test mode:
 "args": ["/absolute/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py", "--test-mode"]
 ```
 
-### Real Mode (For Production Use)
+### Real Mode
 
 Real mode makes actual API calls to The Odds API. This is necessary for:
 - Getting real-time sports betting data

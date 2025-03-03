@@ -116,7 +116,7 @@ async def test_direct_method():
 When adding a new tool to the MCP server:
 
 1. Add the tool implementation to `odds_client_server.py`
-2. Create a mock data file in `wagyu_sports/mcp/mocks/` if needed
+2. Create a mock data file in `wagyu_sports/mcp_server/mocks_live/` if needed
 3. Add a test function in `test_odds_mcp_server.py` following the pattern above
 4. Ensure your test verifies both the structure and content of the response
 

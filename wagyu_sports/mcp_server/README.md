@@ -16,92 +16,75 @@ The server exposes the following tools:
 - `get_odds`: Get odds for a specific sport
 - `get_quota_info`: Get API quota information
 
-## Usage
+## Integration with MCP Clients
 
-### Basic Usage
-
-```python
-from wagyu_sports.mcp import OddsMcpServer
-
-# Initialize with API key
-server = OddsMcpServer(api_key="your_api_key")
-
-# Run the server
-import asyncio
-asyncio.run(server.run())
-```
-
-### Test Mode
-
-The server can be run in test mode, which uses mock data instead of making real API calls:
-
-```python
-# Initialize in test mode (no API key required)
-server = OddsMcpServer(test_mode=True)
-
-# Run the server
-import asyncio
-asyncio.run(server.run())
-```
-
-## Testing with MCP Inspector
-
-You can test the server using the MCP Inspector tool:
-
-1. Run the test server:
-   ```
-   python wagyu_sports/mcp/test_server.py
-   ```
-
-2. In another terminal, run the MCP Inspector:
-   ```
-   npx @modelcontextprotocol/inspector python wagyu_sports/mcp/test_server.py
-   ```
-
-3. The inspector will connect to the server and allow you to:
-   - View and test available tools
-   - See the results of tool calls
-   - Monitor server logs
-
-## Integration with Cline
+### Integration with Cline
 
 To use this MCP server with Cline:
 
-1. Add the server to Cline's MCP settings:
+1. Add the server to Cline's MCP settings file located at:
+   - macOS: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+   - Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+
+2. Add the following configuration:
    ```json
    {
      "mcpServers": {
        "wagyu-sports": {
          "command": "python",
-         "args": ["/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp/test_server.py"],
+         "args": ["/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py"],
          "env": {
            "ODDS_API_KEY": "your_api_key"
-         }
+         },
+         "disabled": false,
+         "autoApprove": []
        }
      }
    }
    ```
 
-2. Restart Cline
+3. Replace `/path/to/wagyu_mcp_hackathon` with the actual path to your project
+4. Replace `your_api_key` with your actual API key from [The Odds API](https://the-odds-api.com/)
+5. Restart Cline
 
-3. The tools will be available for use in Cline
+### Integration with Claude Desktop
 
-## Mock Data
+To use this MCP server with Claude Desktop:
 
-When running in test mode, the server uses mock data from the `mocks/` directory:
+1. Add the server to Claude Desktop's configuration file located at:
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
-- `sports_list.json`: Sample list of available sports
-- `nba_games.json`: Sample NBA game data
-- `game_odds_all_books.json`: Sample odds data from multiple bookmakers
+2. Add the following configuration:
+   ```json
+   {
+     "mcpServers": {
+       "wagyu-sports": {
+         "command": "python",
+         "args": ["/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py"],
+         "env": {
+           "ODDS_API_KEY": "your_api_key"
+         },
+         "disabled": false,
+         "autoApprove": []
+       }
+     }
+   }
+   ```
 
-You can modify these files to test different scenarios.
+3. Replace `/path/to/wagyu_mcp_hackathon` with the actual path to your project
+4. Replace `your_api_key` with your actual API key from [The Odds API](https://the-odds-api.com/)
+5. Restart Claude Desktop
 
-## Implementation Details
+## Test Mode
 
-The server is implemented using the Python MCP SDK and follows the MCP protocol specification. It wraps the existing `OddsClient` class and exposes its functionality through MCP tools.
+The server can be run in test mode by adding the `--test-mode` flag to the command:
 
-The implementation includes:
-- Tool registration and execution
-- Test mode with mock data
-- Error handling
-- API quota tracking
+```json
+"args": ["/path/to/wagyu_mcp_hackathon/wagyu_sports/mcp_server/test_server.py", "--test-mode"]
+```
+
+In test mode, the server uses mock data from the `mocks_live/` directory instead of making real API calls, which:
+- Doesn't require an API key
+- Doesn't consume your API quota
+- Works offline

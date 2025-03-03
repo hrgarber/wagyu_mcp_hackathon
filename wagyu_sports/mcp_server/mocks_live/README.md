@@ -57,4 +57,6 @@ The MCP server has been modified to support overriding the test mode setting on 
 
 The following live API responses have been captured:
 
-- (None yet - will be added as captures are made)
+- `sports_list_live.json`: List of available sports
+- `nba_games_live.json`: NBA game odds data
+- `quota_info_live.json`: API quota information
