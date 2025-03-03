@@ -28,12 +28,25 @@ The project has been reorganized for better maintainability:
 ## Installation
 
 ```bash
-# Install the package
-pip install -e . -f build/
+# Development installation
+uvx install -e .
+
+# User installation
+uv install wagyu_sports
 
 # Set up API key
 cp config/.env.example config/.env
 # Edit .env and add your API key from https://the-odds-api.com/
+```
+
+## Running the MCP Server
+
+```bash
+# Run the MCP server directly
+uvx run wagyu_sports.mcp_server.test_server
+
+# Or run with test mode enabled (uses mock data)
+uvx run wagyu_sports.mcp_server.test_server --test-mode
 ```
 
 ## Quick Start
@@ -73,14 +86,14 @@ See the `examples/` directory for usage patterns:
 The testing suite has been cleaned up and improved for better organization and reliability. Run the tests using pytest:
 
 ```bash
-# Install pytest if not already installed
-pip install pytest pytest-asyncio
+# Install test dependencies
+uvx install pytest pytest-asyncio
 
 # Run all tests
-pytest --rootdir=. -c config/pytest.ini
+uvx run pytest --rootdir=. -c config/pytest.ini
 
 # Run specific test file
-pytest tests/test_simple_mcp.py
+uvx run pytest tests/test_simple_mcp.py
 ```
 
 Or use the Makefile:

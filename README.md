@@ -28,9 +28,22 @@ The project has been reorganized for better maintainability:
 ## Installation
 
 ```bash
-pip install -e .
+# Development installation
+uvx install -e .
+
+# User installation
+uv install wagyu_sports
+
+# Set up API key
 cp wagyu_sports/config/.env.example wagyu_sports/config/.env
 # Add your API key to .env (get one from https://the-odds-api.com/)
+```
+
+## Running the MCP Server
+
+```bash
+# Run the MCP server directly
+uvx run wagyu_sports.mcp_server.test_server
 ```
 
 ## Usage
@@ -73,12 +86,14 @@ The `wagyu_sports/examples/` directory contains:
 The project includes multiple test approaches:
 
 ```bash
+# Install test dependencies
+uvx install pytest pytest-asyncio
+
 # Run all tests
-cd wagyu_sports
-pytest --rootdir=. -c config/pytest.ini
+uvx run pytest wagyu_sports/tests
 
 # Run specific test file
-pytest tests/test_simple_mcp.py
+uvx run pytest wagyu_sports/tests/test_simple_mcp.py
 ```
 
 ### Test Types
