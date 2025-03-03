@@ -71,6 +71,19 @@ cd wagyu_sports
 pytest --rootdir=. -c config/pytest.ini
 ```
 
+## Git Hooks
+
+This repository includes a post-commit hook that automatically deletes Python cache files:
+
+- Automatically removes all `__pycache__` directories after each commit
+- Deletes `.pyc`, `.pyo`, and `.pyd` compiled Python files
+- Keeps your working directory clean while developing
+
+The hook is already set up in `.git/hooks/post-commit`. If you clone this repository, you'll need to make the hook executable:
+```bash
+chmod +x .git/hooks/post-commit
+```
+
 ## API Documentation
 
 For full API documentation, visit [The Odds API](https://the-odds-api.com/liveapi/guides/v4/).
