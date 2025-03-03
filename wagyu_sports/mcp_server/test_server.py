@@ -11,10 +11,8 @@ import sys
 import argparse
 from pathlib import Path
 
-# Add parent directory to path to import from wagyu_sports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
-from wagyu_sports.mcp_server import OddsMcpServer
+# Import directly from the current directory
+from odds_client_server import OddsMcpServer
 
 async def main():
     """Run the MCP server."""

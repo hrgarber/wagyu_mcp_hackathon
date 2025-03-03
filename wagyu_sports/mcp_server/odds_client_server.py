@@ -16,7 +16,12 @@ from mcp.server.fastmcp import FastMCP
 from mcp.server.stdio import stdio_server
 import mcp.types as types
 
-from wagyu_sports.odds_client import OddsClient
+try:
+    # When imported as a package
+    from .odds_client import OddsClient
+except ImportError:
+    # When run directly
+    from odds_client import OddsClient
 
 class OddsMcpServer:
     """MCP server for Wagyu Sports odds API."""
