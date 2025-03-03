@@ -6,6 +6,7 @@ This directory contains tests for the Wagyu Sports MCP server implementation.
 
 - `test_odds_api.py` - Tests for the core Odds API client
 - `test_odds_mcp_server.py` - Tests for the MCP server implementation
+- `test_simple_mcp.py` - Simple direct tests for the MCP server functionality
 
 ## How to Run the Tests
 
@@ -51,9 +52,23 @@ This configuration automatically:
 
 ## How to Add New Tests
 
-### Basic Test Structure
+### Test Approaches
 
-New tests for the MCP server should follow this pattern:
+There are two main approaches to testing the MCP server:
+
+1. **Client-based testing** (in `test_odds_mcp_server.py`):
+   - Uses the MCP client session to test the server through the MCP protocol
+   - Tests the full protocol implementation
+   - Good for integration testing
+
+2. **Direct testing** (in `test_simple_mcp.py`):
+   - Tests the server methods directly
+   - Faster and simpler for testing core functionality
+   - Good for unit testing
+
+### Client-Based Test Structure
+
+Client-based tests for the MCP server should follow this pattern:
 
 ```python
 @pytest.mark.anyio
@@ -74,6 +89,26 @@ async def test_your_feature():
         
         # Add specific assertions for your test case
         assert "expected_value" in content.text
+```
+
+### Direct Test Structure
+
+Direct tests access the server methods directly:
+
+```python
+@pytest.mark.asyncio
+async def test_direct_method():
+    """Test description"""
+    # Initialize server in test mode
+    server = OddsMcpServer(test_mode=True)
+    
+    # Test method directly
+    mock_data = await server._get_mock_data("data_file.json")
+    
+    # Parse and verify the response
+    data = json.loads(mock_data)
+    assert "expected_key" in data
+    # Add more assertions...
 ```
 
 ### Testing New Tools
