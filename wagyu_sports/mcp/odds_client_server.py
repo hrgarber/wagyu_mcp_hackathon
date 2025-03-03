@@ -12,7 +12,7 @@ import asyncio
 from typing import Dict, Any, Optional, List, Union
 from pathlib import Path
 
-from mcp.server import Server
+from mcp.server.fastmcp import FastMCP
 from mcp.server.stdio import stdio_server
 import mcp.types as types
 
@@ -41,13 +41,13 @@ class OddsMcpServer:
         # Initialize client
         self.client = OddsClient(self.api_key) if not test_mode else None
         
-        # Initialize server
-        self.server = Server("wagyu-sports-mcp")
+        # Initialize server with FastMCP
+        self.server = FastMCP("wagyu-sports-mcp")
         
-        # Register handlers
-        self._register_tools()
-        
-    def _register_tools(self):
+        # Register tools
+        self.register_tools()
+    
+    def register_tools(self):
         """Register MCP tools."""
         
         @self.server.tool()
@@ -146,12 +146,9 @@ class OddsMcpServer:
     
     async def run(self):
         """Run the MCP server."""
-        async with stdio_server() as streams:
-            await self.server.run(
-                streams[0],
-                streams[1],
-                self.server.create_initialization_options()
-            )
+        # FastMCP has a different API for running the server
+        # We need to use the run_stdio_async method directly
+        await self.server.run_stdio_async()
             
 def main():
     """Run the MCP server as a standalone process."""
