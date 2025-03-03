@@ -1,6 +1,8 @@
 # Wagyu Sports MCP Server
 
-<img src="assets/images/wagyu_ninja.png" width="250" alt="Wagyu Sports Logo">
+<p align="center">
+  <img src="assets/images/wagyu_ninja.png" width="250" alt="Wagyu Sports Logo">
+</p>
 
 A Model Context Protocol (MCP) server for sports betting data, providing access to The Odds API through Claude and other MCP-compatible AI assistants.
 
