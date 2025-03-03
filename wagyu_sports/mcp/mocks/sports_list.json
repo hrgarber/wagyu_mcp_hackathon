@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "key": "basketball_nba",
+      "group": "Basketball",
+      "title": "NBA",
+      "description": "US Basketball",
+      "active": true,
+      "has_outrights": false
+    },
+    {
+      "key": "basketball_euroleague",
+      "group": "Basketball",
+      "title": "Euroleague",
+      "description": "European Basketball",
+      "active": true,
+      "has_outrights": false
+    },
+    {
+      "key": "soccer_epl",
+      "group": "Soccer",
+      "title": "English Premier League",
+      "description": "English Soccer",
+      "active": true,
+      "has_outrights": true
+    },
+    {
+      "key": "soccer_usa_mls",
+      "group": "Soccer",
+      "title": "MLS",
+      "description": "US Soccer",
+      "active": true,
+      "has_outrights": true
+    },
+    {
+      "key": "baseball_mlb",
+      "group": "Baseball",
+      "title": "MLB",
+      "description": "US Baseball",
+      "active": false,
+      "has_outrights": true
+    }
+  ],
+  "headers": {
+    "x-requests-remaining": "500",
+    "x-requests-used": "50"
+  }
+}
