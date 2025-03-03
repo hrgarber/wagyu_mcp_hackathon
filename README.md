@@ -142,6 +142,8 @@ python wagyu_sports/mcp_server/test_server.py --test-mode
 python wagyu_sports/mcp_server/test_server.py --api-key=your_api_key_here
 ```
 
+> **Note**: This repository includes a post-commit Git hook that automatically cleans up Python cache files (`__pycache__`, `.pyc`, `.pyo`, `.pyd`) and `.pytest_cache` directories after each commit.
+
 ## Project Structure
 
 - `wagyu_sports/mcp_server/` - MCP server implementation
