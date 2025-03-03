@@ -1,0 +1,133 @@
+{
+  "data": [
+    {
+      "id": "0df14ecb4f35e94b1dbb3666e5d0c67c",
+      "sport_key": "basketball_nba",
+      "sport_title": "NBA",
+      "commence_time": "2025-03-03T00:00:00Z",
+      "home_team": "Los Angeles Lakers",
+      "away_team": "Golden State Warriors",
+      "bookmakers": [
+        {
+          "key": "fanduel",
+          "title": "FanDuel",
+          "last_update": "2025-03-02T23:30:00Z",
+          "markets": [
+            {
+              "key": "h2h",
+              "outcomes": [
+                {
+                  "name": "Los Angeles Lakers",
+                  "price": -180
+                },
+                {
+                  "name": "Golden State Warriors",
+                  "price": 152
+                }
+              ]
+            },
+            {
+              "key": "spreads",
+              "outcomes": [
+                {
+                  "name": "Los Angeles Lakers",
+                  "price": -110,
+                  "point": -4.5
+                },
+                {
+                  "name": "Golden State Warriors",
+                  "price": -110,
+                  "point": 4.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "draftkings",
+          "title": "DraftKings",
+          "last_update": "2025-03-02T23:28:00Z",
+          "markets": [
+            {
+              "key": "h2h",
+              "outcomes": [
+                {
+                  "name": "Los Angeles Lakers",
+                  "price": -185
+                },
+                {
+                  "name": "Golden State Warriors",
+                  "price": 155
+                }
+              ]
+            },
+            {
+              "key": "spreads",
+              "outcomes": [
+                {
+                  "name": "Los Angeles Lakers",
+                  "price": -110,
+                  "point": -4.5
+                },
+                {
+                  "name": "Golden State Warriors",
+                  "price": -110,
+                  "point": 4.5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5df14ecb4f35e94b1dbb3666e5d0c123",
+      "sport_key": "basketball_nba",
+      "sport_title": "NBA",
+      "commence_time": "2025-03-03T01:30:00Z",
+      "home_team": "Boston Celtics",
+      "away_team": "New York Knicks",
+      "bookmakers": [
+        {
+          "key": "fanduel",
+          "title": "FanDuel",
+          "last_update": "2025-03-02T23:30:00Z",
+          "markets": [
+            {
+              "key": "h2h",
+              "outcomes": [
+                {
+                  "name": "Boston Celtics",
+                  "price": -220
+                },
+                {
+                  "name": "New York Knicks",
+                  "price": 180
+                }
+              ]
+            },
+            {
+              "key": "spreads",
+              "outcomes": [
+                {
+                  "name": "Boston Celtics",
+                  "price": -110,
+                  "point": -6.5
+                },
+                {
+                  "name": "New York Knicks",
+                  "price": -110,
+                  "point": 6.5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "headers": {
+    "x-requests-remaining": "499",
+    "x-requests-used": "51"
+  }
+}
