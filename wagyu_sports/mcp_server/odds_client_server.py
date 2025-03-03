@@ -36,7 +36,7 @@ class OddsMcpServer:
             raise ValueError("API key is required when not in test mode")
             
         self.test_mode = test_mode
-        self.mock_data_dir = Path(__file__).parent / "mocks"
+        self.mock_data_dir = Path(__file__).parent / "mocks_live"
         
         # Initialize client
         self.client = OddsClient(self.api_key) if not test_mode else None
@@ -66,7 +66,7 @@ class OddsMcpServer:
             test_mode = use_test_mode if use_test_mode is not None else self.test_mode
             
             if test_mode:
-                return await self._get_mock_data("sports_list.json")
+                return await self._get_mock_data("sports_list_live.json")
             
             result = self.client.get_sports(all_sports=all_sports)
             return json.dumps(result, indent=2)
@@ -96,8 +96,9 @@ class OddsMcpServer:
             
             if test_mode:
                 if sport == "basketball_nba":
-                    return await self._get_mock_data("nba_games.json")
-                return await self._get_mock_data("game_odds_all_books.json")
+                    return await self._get_mock_data("nba_games_live.json")
+                # Fall back to nba_games_live.json since we don't have a live version of game_odds_all_books.json
+                return await self._get_mock_data("nba_games_live.json")
             
             options = {}
             if regions:
@@ -127,10 +128,7 @@ class OddsMcpServer:
             test_mode = use_test_mode if use_test_mode is not None else self.test_mode
             
             if test_mode:
-                return json.dumps({
-                    "remaining_requests": "100",
-                    "used_requests": "50"
-                }, indent=2)
+                return await self._get_mock_data("quota_info_live.json")
             
             return json.dumps({
                 "remaining_requests": self.client.remaining_requests,
